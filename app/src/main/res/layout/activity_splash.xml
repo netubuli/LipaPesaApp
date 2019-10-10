@@ -35,10 +35,12 @@
 
     <TextView
         android:id="@+id/progressMessage"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
         android:text="@string/loading"
+        android:layout_marginStart="@dimen/margin_md"
+        android:layout_marginLeft="@dimen/margin_md"
         app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
