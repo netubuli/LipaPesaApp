@@ -6,4 +6,7 @@
 
     <color name="black_overlay">#66000000</color>
     <color name="colorBlue">#33b5e5</color>
+    <color name="cardview_shadow_start_color">#87CEEB</color>
+    <color name="btnGreen">#456E3F</color>
+    <color name="money">#216C2A</color>
 </resources>

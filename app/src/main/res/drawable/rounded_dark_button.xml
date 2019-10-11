@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+        <layer-list>
+            <!-- SHADOW -->
+            <item>
+                <shape>
+                    <solid android:color="@color/cardview_shadow_start_color"/>
+
+                    <corners android:radius="19dp"/>
+                </shape>
+            </item>
+            <!-- BUTTON
+              android:right="5px" to make it round-->
+            <item
+                android:bottom="5px"
+                >
+                <shape>
+                    <padding android:bottom="5dp"/>
+                    <gradient
+                        android:startColor="@color/btnGreen"
+                        android:endColor="@color/colorBlue"
+                        android:angle="270" />
+                    <corners
+                        android:radius="19dp"/>
+                    <padding
+                        android:left="10dp"
+                        android:top="10dp"
+                        android:right="5dp"
+                        android:bottom="10dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <item android:state_pressed="true">
+        <layer-list>
+            <!-- SHADOW -->
+            <item>
+                <shape>
+                    <solid android:color="@color/money"/>
+                    <corners android:radius="19dp"/>
+
+                </shape>
+            </item>
+            <!-- BUTTON -->
+            <item android:bottom="5px">
+                <shape>
+                    <padding android:bottom="5dp"/>
+                    <gradient
+                        android:startColor="@color/colorBlue"
+                        android:endColor="@color/btnGreen"
+                        android:angle="270" />
+                    <corners
+                        android:radius="19dp"/>
+                    <padding
+                        android:left="10dp"
+                        android:top="10dp"
+                        android:right="5dp"
+                        android:bottom="10dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>
