@@ -5,7 +5,7 @@
             <!-- SHADOW -->
             <item>
                 <shape>
-                    <solid android:color="@color/cardview_shadow_start_color"/>
+                    <solid android:color="@color/shadow_start_color"/>
 
                     <corners android:radius="19dp"/>
                 </shape>
