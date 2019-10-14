@@ -21,7 +21,7 @@
                 android:layout_gravity="center"/>
 
             <AutoCompleteTextView
-                android:id="@+id/txtUname"
+                android:id="@+id/txtRUname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/full_name"
@@ -36,7 +36,7 @@
                 android:drawableStart="@drawable/ic_perm_identity" />
 
             <AutoCompleteTextView
-                android:id="@+id/txtLemail"
+                android:id="@+id/txtRemail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"

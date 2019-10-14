@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -26,12 +27,19 @@ public class SignUpActivity extends AppCompatActivity {
 private Button signUp;
 private CheckBox agree;
 private TextView signIn;
-EditText 
+private EditText phoneText, idText,passwordText,cPasswordText;
+private AutoCompleteTextView nameText,emailText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        phoneText = findViewById(R.id.txtPhone);
+        idText = findViewById(R.id.txtId);
+        passwordText = findViewById(R.id.txtPassword);
+        cPasswordText = findViewById(R.id.txtCpass);
+        nameText = findViewById(R.id.txtRUname);
+        emailText = findViewById(R.id.txtRemail);
         signIn = findViewById(R.id.btnRLogin);
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +53,15 @@ EditText
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final String name = nameText.getText().toString().trim();
+                final String email = emailText.getText().toString().trim();
+                final String phone = phoneText.getText().toString().trim();
+                final String id = idText.getText().toString().trim();
+                final String pass = passwordText.getText().toString().trim();
+                final String cPass = cPasswordText.getText().toString().trim();
+                if(validate(name,email,phone,id,pass,cPass)){
+
+                }
 
             }
         });
@@ -63,7 +80,7 @@ EditText
             }
         });
     }
-    private boolean validate(@NotNull String name, String email, String phone, String pass, String cpass) {
+    private boolean validate(String name, String email, String phone, String id,String pass, String cpass) {
         boolean valid = true;
         if (name.isEmpty() || name.length() < 4) {
             nameText.setError("Name should be at least 4 characters");
@@ -82,6 +99,12 @@ EditText
             valid = false;
         }else{
             phoneText.setError(null);
+        }
+        if(id.isEmpty()||id.length()<10){
+            idText.setError("Invalid Id/Passport number");
+            valid = false;
+        }else{
+            idText.setError(null);
         }
         if (pass.isEmpty() || pass.length() < 6) {
             passwordText.setError("Password should be at least 6 characters long");
