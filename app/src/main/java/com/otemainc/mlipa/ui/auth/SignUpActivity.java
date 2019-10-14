@@ -2,6 +2,7 @@ package com.otemainc.mlipa.ui.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.otemainc.mlipa.R;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,8 +62,25 @@ private AutoCompleteTextView nameText,emailText;
                 final String id = idText.getText().toString().trim();
                 final String pass = passwordText.getText().toString().trim();
                 final String cPass = cPasswordText.getText().toString().trim();
+                //create and show the progressDialog
+                final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this,
+                        R.style.AppTheme_Dark_Dialog);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Creating Account...");
+                progressDialog.show();
                 if(validate(name,email,phone,id,pass,cPass)){
 
+                    if (!isValidPassword(pass)) {
+                        passwordText.setError("Password should contain at least one number, one lowercase letter, one uppercase letter, one special character and no space");
+                        progressDialog.dismiss();
+                        signUp.setEnabled(true);
+                    }else{
+                        passwordText.setError(null);
+                        save(name,email,phone,pass, progressDialog);
+                    }
+                }else{
+                    progressDialog.dismiss();
+                    signUp.setEnabled(true);
                 }
 
             }
@@ -80,7 +100,12 @@ private AutoCompleteTextView nameText,emailText;
             }
         });
     }
-    private boolean validate(String name, String email, String phone, String id,String pass, String cpass) {
+
+    private void save(String name, String email, String phone, String pass, ProgressDialog progressDialog) {
+        
+    }
+
+    private boolean validate(@NotNull String name, String email, String phone, String id, String pass, String cpass) {
         boolean valid = true;
         if (name.isEmpty() || name.length() < 4) {
             nameText.setError("Name should be at least 4 characters");

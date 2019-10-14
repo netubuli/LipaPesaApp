@@ -28,5 +28,10 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme_Dark_Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/btnGreen</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
 
 </resources>
