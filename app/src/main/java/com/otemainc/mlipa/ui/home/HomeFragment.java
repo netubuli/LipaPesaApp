@@ -15,6 +15,9 @@ import androidx.lifecycle.ViewModelProviders;
 import com.otemainc.mlipa.R;
 
 public class HomeFragment extends Fragment {
+    /***
+     * allow transaction history
+     */
 
     private HomeViewModel homeViewModel;
 

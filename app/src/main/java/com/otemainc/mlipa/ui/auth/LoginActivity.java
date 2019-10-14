@@ -7,6 +7,11 @@ import android.os.Bundle;
 import com.otemainc.mlipa.R;
 
 public class LoginActivity extends AppCompatActivity {
+    /***
+     * disallow the shared prefs
+     *
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

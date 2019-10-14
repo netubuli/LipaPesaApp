@@ -26,4 +26,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="phone_number">Phone Number</string>
     <string name="full_name">Full Names</string>
+    <string name="agree">I accept the privacy policy and terms of service</string>
+    <string name="id_passport_number">Id/passport number</string>
+    <string name="already_have_an_account_sign_in">Already have an account? Sign In</string>
 </resources>
