@@ -102,7 +102,7 @@ private AutoCompleteTextView nameText,emailText;
     }
 
     private void save(String name, String email, String phone, String pass, ProgressDialog progressDialog) {
-        
+
     }
 
     private boolean validate(@NotNull String name, String email, String phone, String id, String pass, String cpass) {
