@@ -148,6 +148,18 @@ private AutoCompleteTextView nameText,emailText;
         }
         return valid;
     }
+    //Create a generator for id
+
+    //Use the Id to authenticate the user against the original credentials
+
+    //Check for user permission
+
+    //if admin
+
+    //else if Agent
+
+    //else if basic user
+
     //Check if password is valid
     public boolean isValidPassword(final String password) {
         Pattern pattern;
