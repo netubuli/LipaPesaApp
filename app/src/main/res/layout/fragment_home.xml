@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -34,7 +33,7 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:background="@drawable/circle_background_purple"
-                    android:src="@drawable/ic_wifi_black_24dp"
+                    android:src="@drawable/ic_account_balance_wallet"
                     android:padding="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -77,7 +76,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:background="@color/yello">
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
@@ -115,7 +115,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:background="@color/colorBlue">
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
@@ -161,7 +162,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:background="@color/colorPrimary">
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
@@ -200,7 +202,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/deeppurple"
+                android:elevation="@dimen/padding_sm">
 
                 <ImageView
                     android:layout_width="64dp"
