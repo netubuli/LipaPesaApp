@@ -19,12 +19,26 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/text_xl"
                 android:layout_gravity="center"/>
-
             <AutoCompleteTextView
-                android:id="@+id/txtRUname"
+                android:id="@+id/txtRFname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/full_name"
+                android:hint="@string/first_name"
+                android:ems="14"
+                android:drawableLeft="@drawable/ic_perm_identity"
+                android:drawablePadding="@dimen/padding_sm"
+                android:backgroundTint="@color/colorWhite"
+                android:shadowRadius="10"
+                android:inputType="textEmailAddress"
+                android:layout_gravity="center"
+                android:padding="@dimen/margin_md"
+                android:drawableStart="@drawable/ic_perm_identity" />
+
+            <AutoCompleteTextView
+                android:id="@+id/txtROname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/other_name"
                 android:ems="14"
                 android:drawableLeft="@drawable/ic_perm_identity"
                 android:drawablePadding="@dimen/padding_sm"

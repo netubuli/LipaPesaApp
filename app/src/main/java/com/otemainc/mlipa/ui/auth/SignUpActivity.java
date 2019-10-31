@@ -31,7 +31,7 @@ private Button signUp;
 private CheckBox agree;
 private TextView signIn;
 private EditText phoneText, idText,passwordText,cPasswordText;
-private AutoCompleteTextView nameText,emailText;
+private AutoCompleteTextView lastNameText, otherNameText,emailText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,8 @@ private AutoCompleteTextView nameText,emailText;
         idText = findViewById(R.id.txtId);
         passwordText = findViewById(R.id.txtPassword);
         cPasswordText = findViewById(R.id.txtCpass);
-        nameText = findViewById(R.id.txtRUname);
+        lastNameText = findViewById(R.id.txtRFname);
+        otherNameText = findViewById(R.id.txtRFname);
         emailText = findViewById(R.id.txtRemail);
         signIn = findViewById(R.id.btnRLogin);
         signIn.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +57,8 @@ private AutoCompleteTextView nameText,emailText;
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String name = nameText.getText().toString().trim();
+                final String lName = lastNameText.getText().toString().trim();
+                final String oName = otherNameText.getText().toString().trim();
                 final String email = emailText.getText().toString().trim();
                 final String phone = phoneText.getText().toString().trim();
                 final String id = idText.getText().toString().trim();
@@ -68,7 +70,7 @@ private AutoCompleteTextView nameText,emailText;
                 progressDialog.setIndeterminate(true);
                 progressDialog.setMessage("Creating Account...");
                 progressDialog.show();
-                if(validate(name,email,phone,id,pass,cPass)){
+                if(validate(lName,oName, email,phone,id,pass,cPass)){
 
                     if (!isValidPassword(pass)) {
                         passwordText.setError("Password should contain at least one number, one lowercase letter, one uppercase letter, one special character and no space");
@@ -76,7 +78,7 @@ private AutoCompleteTextView nameText,emailText;
                         signUp.setEnabled(true);
                     }else{
                         passwordText.setError(null);
-                        save(name,email,phone,pass, progressDialog);
+                        save(lName,oName, email,phone,id,pass, progressDialog);
                     }
                 }else{
                     progressDialog.dismiss();
@@ -101,17 +103,23 @@ private AutoCompleteTextView nameText,emailText;
         });
     }
 
-    private void save(String name, String email, String phone, String pass, ProgressDialog progressDialog) {
+    private void save(String lName, String oName, String email, String phone, String id, String pass, ProgressDialog progressDialog) {
 
     }
 
-    private boolean validate(@NotNull String name, String email, String phone, String id, String pass, String cpass) {
+    private boolean validate(@NotNull String lName, String oName, String email, String phone, String id, String pass, String cpass) {
         boolean valid = true;
-        if (name.isEmpty() || name.length() < 4) {
-            nameText.setError("Name should be at least 4 characters");
+        if (lName.isEmpty() || lName.length() < 3) {
+            lastNameText.setError("Last name should be at least 3 characters");
             valid = false;
         } else {
-            nameText.setError(null);
+            lastNameText.setError(null);
+        }
+        if (oName.isEmpty() || oName.length() < 4) {
+            otherNameText.setError("Name should be at least 4 characters");
+            valid = false;
+        } else {
+            otherNameText.setError(null);
         }
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailText.setError("enter a valid email address");
