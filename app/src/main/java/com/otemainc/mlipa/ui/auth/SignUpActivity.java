@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.otemainc.mlipa.R;
+import com.otemainc.mlipa.ui.MainActivity;
+import com.otemainc.mlipa.util.helper.SQLiteHandler;
+import com.otemainc.mlipa.util.helper.SessionManager;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -27,11 +30,16 @@ public class SignUpActivity extends AppCompatActivity {
      * once registered the user can log into the system and transact
      * @param savedInstanceState
      */
-private Button signUp;
-private CheckBox agree;
-private TextView signIn;
-private EditText phoneText, idText,passwordText,cPasswordText;
-private AutoCompleteTextView lastNameText, otherNameText,emailText;
+    private Button signUp;
+    private CheckBox agree;
+    private TextView signIn;
+    private EditText phoneText, idText,passwordText,cPasswordText;
+    private AutoCompleteTextView lastNameText, otherNameText,emailText;
+    private static final String TAG = SignUpActivity.class.getSimpleName();
+    private ProgressDialog pDialog;
+    private SessionManager session;
+    private SQLiteHandler db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,20 @@ private AutoCompleteTextView lastNameText, otherNameText,emailText;
                 finish();
             }
         });
+        // Progress dialog
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        // Session manager
+        session = new SessionManager(getApplicationContext());
+        // SQLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+        // Check if user is already logged in or not
+        if (session.isLoggedIn()) {
+            // User is already logged in. Take him to main activity
+            Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
         signUp = findViewById(R.id.btnRRegister);
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,24 +87,17 @@ private AutoCompleteTextView lastNameText, otherNameText,emailText;
                 final String pass = passwordText.getText().toString().trim();
                 final String cPass = cPasswordText.getText().toString().trim();
                 //create and show the progressDialog
-                final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this,
-                        R.style.AppTheme_Dark_Dialog);
-                progressDialog.setIndeterminate(true);
-                progressDialog.setMessage("Creating Account...");
-                progressDialog.show();
                 if(validate(lName,oName, email,phone,id,pass,cPass)){
 
                     if (!isValidPassword(pass)) {
                         passwordText.setError("Password should contain at least one number, one lowercase letter, one uppercase letter, one special character and no space");
-                        progressDialog.dismiss();
                         signUp.setEnabled(true);
                     }else{
                         passwordText.setError(null);
-                        save(lName,oName, email,phone,id,pass, progressDialog);
+                        save(lName,oName, email,phone,id,pass);
                     }
                 }else{
-                    progressDialog.dismiss();
-                    signUp.setEnabled(true);
+                   signUp.setEnabled(true);
                 }
 
             }
@@ -103,7 +118,7 @@ private AutoCompleteTextView lastNameText, otherNameText,emailText;
         });
     }
 
-    private void save(String lName, String oName, String email, String phone, String id, String pass, ProgressDialog progressDialog) {
+    private void save(String lName, String oName, String email, String phone, String id, String pass) {
 
     }
 

@@ -173,8 +173,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showDialog() {
-        if (!pDialog.isShowing())
+        if (!pDialog.isShowing()) {
+            pDialog.setIndeterminate(true);
             pDialog.show();
+        }
     }
 
     private void hideDialog() {
