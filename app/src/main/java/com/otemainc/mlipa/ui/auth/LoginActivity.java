@@ -10,9 +10,12 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.otemainc.mlipa.MainActivity;
+import com.otemainc.mlipa.ui.MainActivity;
 import com.otemainc.mlipa.R;
+import com.otemainc.mlipa.util.helper.SQLiteHandler;
+import com.otemainc.mlipa.util.helper.SessionManager;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -24,6 +27,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordText;
     private Button login;
     private TextView register;
+    private ProgressDialog pDialog;
+    private SessionManager session;
+    private SQLiteHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,20 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         emailText = findViewById(R.id.txtEmail);
         passwordText = findViewById(R.id.txtPassword);
+        // Progress dialog
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        // SQLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+        // Session manager
+        session = new SessionManager(getApplicationContext());
+        // Check if user is already logged in or not
+        if (session.isLoggedIn()) {
+            // User is already logged in. Take him to main activity
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
         login = findViewById(R.id.btnLogin);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,16 +59,11 @@ public class LoginActivity extends AppCompatActivity {
                 final String pass = passwordText.getText().toString().trim();
                 login.setEnabled(false);
                 //create and show the progressDialog
-                final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                        R.style.AppTheme_Dark_Dialog);
-                progressDialog.setIndeterminate(true);
-                progressDialog.setMessage("Authenticating...");
-                progressDialog.show();
-                if(validate(email,pass)){
-                    auth(email,pass, progressDialog);
+                if(validate(email,pass)&& isValidPassword(pass)){
+                    checkLogin(email, pass);
                 }else{
-                    progressDialog.dismiss();
                     login.setEnabled(true);
+                    Toast.makeText(LoginActivity.this,"An error occured please check the submitted data and try again",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -62,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    private void auth(String email, String pass, ProgressDialog progressDialog) {
+    private void checkLogin(String email, String pass) {
         //Login code goes here
         //load main after successfull login
         loadMain();

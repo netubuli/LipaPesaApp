@@ -1,4 +1,4 @@
-package com.otemainc.mlipa;
+package com.otemainc.mlipa.ui;
 
 import android.os.Bundle;
 
@@ -13,6 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.otemainc.mlipa.R;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 

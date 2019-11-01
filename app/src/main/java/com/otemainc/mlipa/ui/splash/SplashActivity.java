@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.otemainc.mlipa.MainActivity;
+import com.otemainc.mlipa.ui.MainActivity;
 import com.otemainc.mlipa.R;
 import com.otemainc.mlipa.ui.auth.SignUpActivity;
 import com.otemainc.mlipa.util.SharedPref;
