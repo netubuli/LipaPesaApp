@@ -62,16 +62,16 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * Storing user details in database
      * */
-    public void addUser(String lname, String oname, String email, String phone, String idno, String uid, String created_at) {
+    public void addUser(String l_name, String o_name, String email, String phone, String id_no, String uid, String created_at) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME, lname); // Last Name
-        values.put(KEY_ONAME, oname); // Last Name
+        values.put(KEY_NAME, l_name); // Last Name
+        values.put(KEY_ONAME, o_name); // Last Name
         values.put(KEY_EMAIL, email); // Email
         values.put(KEY_PHONE, phone); // Phone number
-        values.put(KEY_IDNO, idno); // Id number
-        values.put(KEY_UID, uid); // Email
+        values.put(KEY_IDNO, id_no); // Id number
+        values.put(KEY_UID, uid); // User Id
         values.put(KEY_CREATED_AT, created_at); // Created At
 
         // Inserting Row
@@ -85,7 +85,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * Getting user data from database
      * */
     public HashMap<String, String> getUserDetails() {
-        HashMap<String, String> user = new HashMap<String, String>();
+        HashMap<String, String> user = new HashMap<>();
         String selectQuery = "SELECT  * FROM " + TABLE_USER;
 
         SQLiteDatabase db = this.getReadableDatabase();

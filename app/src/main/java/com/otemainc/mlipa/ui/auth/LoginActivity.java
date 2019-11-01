@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                         String oname = user.getString("oname");
                         String email = user.getString("email");
                         String phone = user.getString("phone");
-                        String idno = user.getString("idno");
+                        String idno = user.getString("id");
                         String created_at = user.getString("created_at");
                         // Inserting row in users table
                         db.addUser(name, oname, email, phone, idno, uid, created_at);
@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("email", email);
                 params.put("password", pass);
                 return params;

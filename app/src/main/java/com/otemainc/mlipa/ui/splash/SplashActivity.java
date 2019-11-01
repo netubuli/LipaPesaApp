@@ -8,8 +8,6 @@ import android.widget.TextView;
 import com.otemainc.mlipa.ui.MainActivity;
 import com.otemainc.mlipa.R;
 import com.otemainc.mlipa.ui.auth.LoginActivity;
-import com.otemainc.mlipa.ui.auth.SignUpActivity;
-import com.otemainc.mlipa.util.SharedPref;
 import com.otemainc.mlipa.util.helper.SessionManager;
 
 public class SplashActivity extends Activity {
