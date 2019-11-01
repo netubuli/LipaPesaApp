@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -12,13 +13,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.otemainc.mlipa.ui.MainActivity;
 import com.otemainc.mlipa.R;
+import com.otemainc.mlipa.util.AppConfig;
+import com.otemainc.mlipa.util.AppController;
 import com.otemainc.mlipa.util.helper.SQLiteHandler;
 import com.otemainc.mlipa.util.helper.SessionManager;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog pDialog;
     private SessionManager session;
     private SQLiteHandler db;
+    private static final String TAG = SignUpActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +71,14 @@ public class LoginActivity extends AppCompatActivity {
                 final String pass = passwordText.getText().toString().trim();
                 login.setEnabled(false);
                 //create and show the progressDialog
-                if(validate(email,pass)&& isValidPassword(pass)){
-                    checkLogin(email, pass);
+                if(validate(email,pass)){
+                    if (isValidPassword(pass)) {
+                        passwordText.setError(null);
+                        checkLogin(email, pass);
+                    }else{
+                        passwordText.setError("Password should contain at least one number, one lowercase letter, one uppercase letter, one special character and no space");
+                        login.setEnabled(true);
+                    }
                 }else{
                     login.setEnabled(true);
                     Toast.makeText(LoginActivity.this,"An error occured please check the submitted data and try again",Toast.LENGTH_LONG).show();
@@ -77,10 +95,90 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    private void checkLogin(String email, String pass) {
-        //Login code goes here
-        //load main after successfull login
-        loadMain();
+    private void checkLogin(final String email, final String pass) {
+        // Tag used to cancel the request
+        String tag_string_req = "req_login";
+        pDialog.setMessage("Logging in ...");
+        showDialog();
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_LOGIN, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Login Response: " + response);
+                hideDialog();
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+                    // Check for error node in json
+                    if (!error) {
+                        // user successfully logged in
+                        // Create login session
+                        session.setLogin(true);
+                        // Now store the user in SQLite
+                        String uid = jObj.getString("uid");
+                        JSONObject user = jObj.getJSONObject("user");
+                        String name = user.getString("name");
+                        String oname = user.getString("oname");
+                        String email = user.getString("email");
+                        String phone = user.getString("phone");
+                        String idno = user.getString("idno");
+                        String created_at = user.getString("created_at");
+                        // Inserting row in users table
+                        db.addUser(name, oname, email, phone, idno, uid, created_at);
+
+                        // Launch main activity
+                        Intent intent = new Intent(LoginActivity.this,
+                                MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        // Error in login. Get the error message
+                        String errorMsg = jObj.getString("error_msg");
+                        Toast.makeText(getApplicationContext(),
+                                errorMsg, Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    // JSON error
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("email", email);
+                params.put("password", pass);
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
     private void loadMain() {
         Intent loadMain = new Intent(LoginActivity.this, MainActivity.class);

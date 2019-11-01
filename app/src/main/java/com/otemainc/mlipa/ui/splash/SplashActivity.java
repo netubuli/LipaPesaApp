@@ -7,12 +7,15 @@ import android.widget.TextView;
 
 import com.otemainc.mlipa.ui.MainActivity;
 import com.otemainc.mlipa.R;
+import com.otemainc.mlipa.ui.auth.LoginActivity;
 import com.otemainc.mlipa.ui.auth.SignUpActivity;
 import com.otemainc.mlipa.util.SharedPref;
+import com.otemainc.mlipa.util.helper.SessionManager;
 
 public class SplashActivity extends Activity {
     private ProgressBar mProgress;
     private TextView loaderLabel;
+    private SessionManager session;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,10 +53,11 @@ public class SplashActivity extends Activity {
 
     private void startApp() {
 //Check if the user has been authenticated
-        if (SharedPref.getInstance().getString("is_registered").equalsIgnoreCase("")) {
+        session = new SessionManager(getApplicationContext());
+        if (session.isLoggedIn()) {
             //User is not yet logged in
             // show the login activity
-            Intent login = new Intent(SplashActivity.this, SignUpActivity.class);
+            Intent login = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(login);
         }else {
             //User has logged in
