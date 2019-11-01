@@ -1,5 +1,6 @@
 package com.otemainc.mlipa.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -14,6 +15,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.otemainc.mlipa.R;
+import com.otemainc.mlipa.ui.auth.LoginActivity;
+import com.otemainc.mlipa.util.helper.SQLiteHandler;
+import com.otemainc.mlipa.util.helper.SessionManager;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -21,10 +25,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private SQLiteHandler db;
+    private SessionManager session;
+    private TextView name,email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +62,25 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+        // session manager
+        session = new SessionManager(getApplicationContext());
+        View headerView = navigationView.getHeaderView(0);
+        name = headerView.findViewById(R.id.textuname);
+        email = headerView.findViewById(R.id.textemail);
+        //image = headerView.findViewById(R.id.uImage);
+
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String fullName = user.get("name")+" " + user.get("other");
+        String fullEmail = user.get("email");
+        name.setText(fullName);
+        email.setText(fullEmail);
+
     }
 
     @Override
@@ -66,5 +95,19 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+    /**
+     * Logging out the user. Will set isLoggedIn flag to false in shared
+     * preferences Clears the user data from sqlite users table
+     * */
+    private void logoutUser() {
+        session.setLogin(false);
+
+        db.deleteUsers();
+
+        // Launching the login activity
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
