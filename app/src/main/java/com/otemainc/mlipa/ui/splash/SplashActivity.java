@@ -36,13 +36,11 @@ public class SplashActivity extends Activity {
             "Starting\tsystem","Loading\tapp","Updating\tlocal\tdatabase"};
 
     private void doWork() {
-        for (int progress=0; progress<101; progress+=10) {
+        for (int progress=0,i=0; progress<101; progress+=10,i++) {
             try {
                 Thread.sleep(1000);
                 mProgress.setProgress(progress);
-                for(int i = 0; i<launcher_message.length; i++) {
                     loaderLabel.setText(launcher_message[i]+" "+progress+" %");
-                }
             } catch (Exception e) {
                 e.printStackTrace();
                            }
