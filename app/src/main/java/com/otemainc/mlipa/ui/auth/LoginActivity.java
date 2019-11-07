@@ -123,9 +123,11 @@ public class LoginActivity extends AppCompatActivity {
                         String email = user.getString("email");
                         String phone = user.getString("phone");
                         String idno = user.getString("id");
+                        String account = user.getString("account");
+                        String account_type = user.getString("account_type");
                         String created_at = user.getString("created_at");
                         // Inserting row in users table
-                        db.addUser(name, oname, email, phone, idno, uid, created_at);
+                        db.addUser(name, oname, email, phone, idno, uid, account, account_type, created_at);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,

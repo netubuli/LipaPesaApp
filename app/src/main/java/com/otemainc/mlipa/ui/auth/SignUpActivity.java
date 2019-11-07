@@ -154,9 +154,11 @@ public class SignUpActivity extends AppCompatActivity {
                         String final_email = user.getString("email");
                         String final_phone = user.getString("phone");
                         String final_id = user.getString("id");
+                        String final_account = user.getString("account");
+                        String final_acType = user.getString("account_type");
                         String final_created_at = user.getString("created_at");
                         // Inserting row in users table
-                        db.addUser(l_name, ot_name, final_email, final_phone, final_id, final_uid, final_created_at);
+                        db.addUser(l_name, ot_name, final_email, final_phone, final_id, final_uid, final_account, final_acType, final_created_at);
                         Toast.makeText(getApplicationContext(), "User successfully registered. Try login now!", Toast.LENGTH_LONG).show();
                         // Launch login activity
                         Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
