@@ -100,8 +100,7 @@ public class LoginActivity extends AppCompatActivity {
         String tag_string_req = "req_login";
         pDialog.setMessage("Logging in ...");
         showDialog();
-        StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_LOGIN, new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_LOGIN, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -137,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("error_msg");
-                        Toast.makeText(getApplicationContext(),errorMsg, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Login Error "+errorMsg, Toast.LENGTH_LONG).show();
                         login.setEnabled(true);
                     }
                 } catch (JSONException e) {
@@ -152,8 +151,11 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Login Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                Log.e(TAG, "Login Error: " +error + ">>" + error.networkResponse.statusCode
+                                + ">>" + error.networkResponse.data
+                                + ">>" + error.getCause()
+                                + ">>" + error.getMessage());
+                Toast.makeText(getApplicationContext(), "Error Loging In please try again "+error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
                 login.setEnabled(true);
             }
