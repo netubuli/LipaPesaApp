@@ -16,5 +16,6 @@
         android:title="@string/logout"
         android:orderInCategory="100"
         app:showAsAction="never"
-        android:icon="@drawable/ic_lock_outline"/>
+        android:icon="@drawable/ic_lock_outline"
+        android:onClick="logoutUser()"/>
 </menu>
