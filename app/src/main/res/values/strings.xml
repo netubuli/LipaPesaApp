@@ -39,4 +39,11 @@
     <string name="cancel">Cancel</string>
     <string name="amount">Amount</string>
     <string name="recipient_email_account_number">Recipient email/Account Number</string>
+    <string name="send">SEND</string>
+    <string name="send_money">Send Money</string>
+    <string name="sending_money_has_never_been_easier">Sending money has never been easier</string>
+    <string name="request_money">Request Money</string>
+    <string name="make_a_request_for_payment">Make a request for payment</string>
+    <string name="pay_your_bills_without_straining">Pay your bills without straining</string>
+    <string name="pay_bill">Pay Bill</string>
 </resources>

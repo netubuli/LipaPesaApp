@@ -51,17 +51,17 @@
         android:layout_height="wrap_content"
         android:ems="14"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+        app:layout_constraintBottom_toTopOf="@+id/btnSend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtAmount"
         android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/btnSubmit"
+        android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/submit"
+        android:text="@string/send"
         android:background="@drawable/rounded_dark_button"
         android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,7 +80,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtSPwd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnSubmit"
+        app:layout_constraintStart_toEndOf="@+id/btnSend"
         tools:layout_editor_absoluteX="170dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

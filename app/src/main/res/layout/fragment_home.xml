@@ -23,7 +23,8 @@
             android:clickable="true"
             android:layout_width="340dp"
             android:layout_height="150dp"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:focusable="true">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -38,6 +39,7 @@
                     android:padding="10dp"
                     android:contentDescription="TODO" />
                 <TextView
+                    android:id="@+id/txtBalance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
@@ -49,6 +51,7 @@
                     android:background="@color/lightgray"
                     android:layout_margin="10dp"/>
                 <TextView
+                    android:id="@+id/txtAccount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -89,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="Banking"/>
+                    android:text="@string/send_money"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -99,9 +102,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Check your bank activities"
+                    android:text="@string/sending_money_has_never_been_easier"
                     android:padding="5dp"
-                    android:textColor="@android:color/darker_gray"/>
+                    android:textColor="@android:color/background_dark"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -110,7 +113,8 @@
             android:layout_width="160dp"
             android:layout_height="190dp"
             android:layout_margin="10dp"
-            android:focusable="true">
+            android:focusable="true"
+            android:id="@+id/request">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -128,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="Ideas"/>
+                    android:text="@string/request_money"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -138,9 +142,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Check your bank activities"
+                    android:text="@string/make_a_request_for_payment"
                     android:padding="5dp"
-                    android:textColor="@android:color/darker_gray"/>
+                    android:textColor="@android:color/background_dark"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -157,7 +161,8 @@
             android:layout_width="160dp"
             android:layout_height="190dp"
             android:layout_margin="10dp"
-            android:focusable="true">
+            android:focusable="true"
+            android:id="@+id/payBill">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -175,7 +180,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="Add"/>
+                    android:text="@string/pay_bill"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -185,9 +190,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Check your bank activities"
+                    android:text="@string/pay_your_bills_without_straining"
                     android:padding="5dp"
-                    android:textColor="@android:color/darker_gray"/>
+                    android:textColor="@android:color/background_dark"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
