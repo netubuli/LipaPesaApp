@@ -184,7 +184,7 @@ public class SendFragment extends Fragment implements View.OnClickListener {
         boolean response = false;
         // if the response is true
 
-        
+
         return response;
     }
 }
