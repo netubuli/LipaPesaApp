@@ -8,20 +8,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.HashMap;
-
 public class SQLiteHandler extends SQLiteOpenHelper {
     private static final String TAG = SQLiteHandler.class.getSimpleName();
-
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 3;
-
+    private static final int DATABASE_VERSION = 1;
     // Database Name
-    private static final String DATABASE_NAME = "android_api";
-
+    private static final String DATABASE_NAME = "mlipa_db";
     // Login table name
     private static final String TABLE_USER = "user";
-
     // Login Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "lname";
@@ -33,11 +28,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private static final String KEY_ACNO = "acno";
     private static final String KEY_ACTYPE = "ac_type";
     private static final String KEY_CREATED_AT = "created_at";
-
     public SQLiteHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -48,16 +41,13 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + KEY_UID + " TEXT," + KEY_ACNO + "TEXT,"
                 + KEY_ACTYPE + "TEXT," + KEY_CREATED_AT + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
-
         Log.d(TAG, "Database tables created");
     }
-
     // Upgrading database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
-
         // Create tables again
         onCreate(db);
     }
@@ -67,7 +57,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * */
     public void addUser(String l_name, String o_name, String email, String phone, String id_no, String uid, String acNo, String acType, String created_at) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, l_name); // Last Name
         values.put(KEY_ONAME, o_name); // Last Name

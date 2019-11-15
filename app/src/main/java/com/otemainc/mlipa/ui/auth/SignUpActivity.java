@@ -105,6 +105,7 @@ public class SignUpActivity extends AppCompatActivity {
                         signUp.setEnabled(true);
                     }else{
                         passwordText.setError(null);
+                        signUp.setEnabled(false);
                         registerUser(lName,oName, email,phone,id,pass);
                     }
                 }else{

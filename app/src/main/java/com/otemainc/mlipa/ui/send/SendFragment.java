@@ -1,13 +1,16 @@
 package com.otemainc.mlipa.ui.send;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -15,11 +18,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.otemainc.mlipa.R;
 import com.otemainc.mlipa.ui.MainActivity;
+import com.otemainc.mlipa.ui.auth.LoginActivity;
+import com.otemainc.mlipa.ui.auth.SignUpActivity;
+import com.otemainc.mlipa.util.AppConfig;
+import com.otemainc.mlipa.util.AppController;
 import com.otemainc.mlipa.util.helper.SQLiteHandler;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
+import java.util.Map;
 
 public class SendFragment extends Fragment implements View.OnClickListener {
 
@@ -27,7 +42,8 @@ public class SendFragment extends Fragment implements View.OnClickListener {
     private EditText text_reciever,text_amount;
     private Button send,cancel;
     private SQLiteHandler db;
-    private String sender, reciever,amount;
+    private ProgressDialog pDialog;
+    private static final String TAG = SendFragment.class.getSimpleName();
 
 
 
@@ -41,18 +57,15 @@ public class SendFragment extends Fragment implements View.OnClickListener {
                 textView.setText(s);
             }
         });
-        db = new SQLiteHandler(getActivity().getApplicationContext());
-// Fetching user details from sqlite
-        HashMap<String, String> account = db.getUserDetails();
-        sender = account.get("account");
         text_reciever = root.findViewById(R.id.txtRecipient);
         text_amount = root.findViewById(R.id.txtAmount);
         send = root.findViewById(R.id.btnSend);
         send.setOnClickListener(this);
         cancel = root.findViewById(R.id.btnCancel);
         cancel.setOnClickListener(this);
-        reciever = text_reciever.getText().toString().trim();
-        amount = text_amount.getText().toString().trim();
+        // Progress dialog
+        pDialog = new ProgressDialog(getActivity());
+        pDialog.setCancelable(false);
 
         return root;
     }
@@ -65,33 +78,105 @@ public class SendFragment extends Fragment implements View.OnClickListener {
                 startActivity(main);
                 break;
             case R.id.btnSend:
-
+                db = new SQLiteHandler(getActivity().getApplicationContext());
+// Fetching user details from sqlite
+                HashMap<String, String> account = db.getUserDetails();
+                final String sender = account.get("account");
+                final String reciever = text_reciever.getText().toString().trim();
+                final String amount = text_amount.getText().toString().trim();
                 if(valid(reciever,amount)){
+                    cancel.setEnabled(false);
+                    send.setEnabled(false);
                     sendMoney(sender,reciever,amount);
+                }else{
+                    cancel.setEnabled(true);
+                    send.setEnabled(true);
                 }
-
-
         }
     }
 
-    private void sendMoney(String sender, String reciever, String amount) {
+    private void sendMoney(final String sender, final String reciever, final String amount) {
+        // Tag used to cancel the request
+        String tag_string_send = "Send_Money";
+        pDialog.setMessage("Sending ...");
+        showDialog();
+        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_REGISTER, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Transfer Response: " + response);
+                hideDialog();
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+                    if (!error) {
+                       Toast.makeText(getActivity().getApplicationContext(), "Transaction successfull", Toast.LENGTH_LONG).show();
+                        // Launch MAIN activity
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                    } else {
+                        // Error occurred. Get the error
+                        // message
+                        String errorMsg = jObj.getString("error_msg");
+                        Toast.makeText(getActivity().getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Transaction Error: " + error.getMessage());
+                Toast.makeText(getActivity().getApplicationContext(), " An error has occurred during cash transfer "+error.getMessage(), Toast.LENGTH_LONG).show();
+               cancel.setEnabled(true);
+               send.setEnabled(true);
+                hideDialog();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                Map<String, String> params = new HashMap<>();
+                params.put("sender", sender);
+                params.put("reciever", reciever);
+                params.put("amount", amount);
+
+                return params;
+            }
+        };
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_send);
 
     }
 
-    private boolean valid(String reciever, String amount) {
+    private boolean valid(String receiver, String amount) {
         boolean valid = true;
-        if(reciever.isEmpty()||sender.length()<4){
-            text_reciever.setError("Invalid Reciepient Account");
+        if(receiver.isEmpty()||receiver.length()<4){
+            text_reciever.setError("Invalid Recipient Account");
             valid = false;
         }else{
             text_reciever.setError(null);
         }
         if (amount.isEmpty() || amount.length() < 2) {
-            text_amount.setError("Amount should be atleast Ksh 10");
+            text_amount.setError("Amount should be at least Ksh 10");
             valid = false;
         }else {
             text_amount.setError(null);
         }
         return valid;
+    }
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
 }
