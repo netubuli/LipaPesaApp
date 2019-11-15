@@ -87,7 +87,9 @@ public class SendFragment extends Fragment implements View.OnClickListener {
                 if(valid(reciever,amount)){
                     cancel.setEnabled(false);
                     send.setEnabled(false);
-                    sendMoney(sender,reciever,amount);
+                    if(confirm(sender)) {
+                        sendMoney(sender, reciever, amount);
+                    }
                 }else{
                     cancel.setEnabled(true);
                     send.setEnabled(true);
@@ -161,7 +163,7 @@ public class SendFragment extends Fragment implements View.OnClickListener {
             text_reciever.setError(null);
         }
         if (amount.isEmpty() || amount.length() < 2) {
-            text_amount.setError("Amount should be at least Ksh 10");
+            text_amount.setError("Amount should be at least Ksh 5");
             valid = false;
         }else {
             text_amount.setError(null);
@@ -176,5 +178,13 @@ public class SendFragment extends Fragment implements View.OnClickListener {
     private void hideDialog() {
         if (pDialog.isShowing())
             pDialog.dismiss();
+    }
+    private boolean confirm(String reciever){
+        //get user response
+        boolean response = false;
+        // if the response is true
+
+        
+        return response;
     }
 }
