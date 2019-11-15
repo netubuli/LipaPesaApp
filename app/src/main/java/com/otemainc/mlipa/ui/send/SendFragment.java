@@ -79,7 +79,7 @@ public class SendFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btnSend:
                 db = new SQLiteHandler(getActivity().getApplicationContext());
-// Fetching user details from sqlite
+// Fetching user details from sqlite and passing on to the sender variable
                 HashMap<String, String> account = db.getUserDetails();
                 final String sender = account.get("account");
                 final String reciever = text_reciever.getText().toString().trim();
@@ -100,7 +100,7 @@ public class SendFragment extends Fragment implements View.OnClickListener {
         String tag_string_send = "Send_Money";
         pDialog.setMessage("Sending ...");
         showDialog();
-        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_REGISTER, new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_SEND, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -124,7 +124,6 @@ public class SendFragment extends Fragment implements View.OnClickListener {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
 
@@ -145,7 +144,6 @@ public class SendFragment extends Fragment implements View.OnClickListener {
                 params.put("sender", sender);
                 params.put("reciever", reciever);
                 params.put("amount", amount);
-
                 return params;
             }
         };
@@ -156,7 +154,7 @@ public class SendFragment extends Fragment implements View.OnClickListener {
 
     private boolean valid(String receiver, String amount) {
         boolean valid = true;
-        if(receiver.isEmpty()||receiver.length()<4){
+        if(receiver.isEmpty()||receiver.length()<2){
             text_reciever.setError("Invalid Recipient Account");
             valid = false;
         }else{

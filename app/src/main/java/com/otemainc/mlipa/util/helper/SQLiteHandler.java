@@ -35,11 +35,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
-                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_ONAME + " TEXT," + KEY_EMAIL + " TEXT UNIQUE,"
-                + KEY_PHONE + " TEXT," + KEY_IDNO + " TEXT,"
-                + KEY_UID + " TEXT," + KEY_ACNO + "TEXT,"
-                + KEY_ACTYPE + "TEXT," + KEY_CREATED_AT + " TEXT" + ")";
+                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " VARCHAR(25),"
+                + KEY_ONAME + " VARCHAR(25)," + KEY_EMAIL + " VARCHAR(60) UNIQUE,"
+                + KEY_PHONE + " VARCHAR(15)," + KEY_IDNO + " VARCHAR(25),"
+                + KEY_UID + " VARCHAR(255)," + KEY_ACNO + " VARCHAR(100),"
+                + KEY_ACTYPE + " VARCHAR(5)," + KEY_CREATED_AT + " VARCHAR(100))";
         db.execSQL(CREATE_LOGIN_TABLE);
         Log.d(TAG, "Database tables created");
     }
