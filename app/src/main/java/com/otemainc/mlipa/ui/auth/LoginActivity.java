@@ -127,10 +127,9 @@ public class LoginActivity extends AppCompatActivity {
                         String created_at = user.getString("created_at");
                         // Inserting row in users table
                         db.addUser(name, oname, email, phone, idno, uid, account, account_type, created_at);
-
+                        Toast.makeText(getApplicationContext(),"Welcome " + name+" "+oname,Toast.LENGTH_LONG).show();
                         // Launch main activity
-                        Intent intent = new Intent(LoginActivity.this,
-                                MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     } else {

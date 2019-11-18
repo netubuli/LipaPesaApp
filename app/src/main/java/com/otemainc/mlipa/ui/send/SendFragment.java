@@ -81,15 +81,15 @@ public class SendFragment extends Fragment implements View.OnClickListener {
                 db = new SQLiteHandler(getActivity().getApplicationContext());
 // Fetching user details from sqlite and passing on to the sender variable
                 HashMap<String, String> account = db.getUserDetails();
-                final String sender = account.get("account");
+                final String sender = account.get("phone");
                 final String reciever = text_reciever.getText().toString().trim();
                 final String amount = text_amount.getText().toString().trim();
                 if(valid(reciever,amount)){
                     cancel.setEnabled(false);
                     send.setEnabled(false);
-                    if(confirm(sender)) {
+                    //if(confirm(sender)) {
                         sendMoney(sender, reciever, amount);
-                    }
+                    //}
                 }else{
                     cancel.setEnabled(true);
                     send.setEnabled(true);
@@ -112,7 +112,11 @@ public class SendFragment extends Fragment implements View.OnClickListener {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
                     if (!error) {
-                       Toast.makeText(getActivity().getApplicationContext(), "Transaction successfull", Toast.LENGTH_LONG).show();
+                        JSONObject transaction = jObj.getJSONObject("transaction");
+                        String message = transaction.getString("message");
+                       Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                        cancel.setEnabled(true);
+                        send.setEnabled(true);
                         // Launch MAIN activity
                         Intent intent = new Intent(getContext(), MainActivity.class);
                         startActivity(intent);
@@ -122,6 +126,8 @@ public class SendFragment extends Fragment implements View.OnClickListener {
                         // message
                         String errorMsg = jObj.getString("error_msg");
                         Toast.makeText(getActivity().getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
+                        cancel.setEnabled(true);
+                        send.setEnabled(true);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
