@@ -26,6 +26,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private HomeViewModel homeViewModel;
     private CardView send,request,paybill, account;
+    private String accountNo;
+    private TextView balance;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
@@ -36,8 +38,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         request.setOnClickListener(this);
         paybill = root.findViewById(R.id.payBill);
         paybill.setOnClickListener(this);
+        getbalance(accountNo);
 
         return root;
+    }
+
+    private void getbalance(String account) {
     }
 
     @Override

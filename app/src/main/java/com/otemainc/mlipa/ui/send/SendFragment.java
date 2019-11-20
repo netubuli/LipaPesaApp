@@ -12,8 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -24,8 +24,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.otemainc.mlipa.R;
 import com.otemainc.mlipa.ui.MainActivity;
-import com.otemainc.mlipa.ui.auth.LoginActivity;
-import com.otemainc.mlipa.ui.auth.SignUpActivity;
 import com.otemainc.mlipa.util.AppConfig;
 import com.otemainc.mlipa.util.AppController;
 import com.otemainc.mlipa.util.helper.SQLiteHandler;
