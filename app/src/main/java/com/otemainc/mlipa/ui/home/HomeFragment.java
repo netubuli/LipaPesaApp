@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.otemainc.mlipa.R;
+import com.otemainc.mlipa.ui.gallery.GalleryFragment;
 import com.otemainc.mlipa.ui.send.SendFragment;
 import com.otemainc.mlipa.ui.share.ShareFragment;
 import com.otemainc.mlipa.ui.tools.ToolsFragment;
@@ -34,7 +35,7 @@ import java.util.Map;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
     private HomeViewModel homeViewModel;
-    private CardView send,request,paybill, account;
+    private CardView send,request,paybill, history;
     private String phoneNo;
     private TextView balance;
     private SQLiteHandler db;
@@ -51,6 +52,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         request.setOnClickListener(this);
         paybill = root.findViewById(R.id.payBill);
         paybill.setOnClickListener(this);
+        history = root.findViewById(R.id.history);
+        history.setOnClickListener(this);
         db = new SQLiteHandler(getActivity().getApplicationContext());
         HashMap<String, String> userPhone = db.getUserDetails();
         phoneNo = userPhone.get("phone");
@@ -131,6 +134,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 ToolsFragment toolFrag= new ToolsFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.nav_host_fragment, toolFrag, "findThisFragment")
+                        .addToBackStack(null).commit();
+                break;
+            case R.id.history:
+                GalleryFragment galFrag= new GalleryFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment, galFrag, "findGalleryFragment")
                         .addToBackStack(null).commit();
                 break;
         }

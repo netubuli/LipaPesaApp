@@ -46,4 +46,11 @@
     <string name="make_a_request_for_payment">Make a request for payment</string>
     <string name="pay_your_bills_without_straining">Pay your bills without straining</string>
     <string name="pay_bill">Pay Bill</string>
+    <string name="history">History</string>
+    <string name="wallet_balance_image">Wallet Balance Image</string>
+    <string name="check_the_history_of_your_transactions">Check the history of your transactions</string>
+    <string name="send_money_icon">Send Money Icon</string>
+    <string name="request_image_icon">Request Image Icon</string>
+    <string name="pay_bill_icon">Pay Bill Icon</string>
+    <string name="transaction_history_icon">Transaction History Icon</string>
 </resources>

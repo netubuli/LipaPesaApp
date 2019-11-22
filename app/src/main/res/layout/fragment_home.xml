@@ -37,7 +37,7 @@
                     android:background="@drawable/circle_background_purple"
                     android:src="@drawable/ic_account_balance_wallet"
                     android:padding="10dp"
-                    android:contentDescription="TODO" />
+                    android:contentDescription="@string/wallet_balance_image" />
                 <TextView
                     android:id="@+id/txtBalance"
                     android:layout_width="wrap_content"
@@ -86,7 +86,8 @@
                     android:layout_height="64dp"
                     android:background="@drawable/circle_background_purple"
                     android:src="@drawable/ic_attach_money_black_24dp"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:contentDescription="@string/send_money_icon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -126,7 +127,8 @@
                     android:layout_height="64dp"
                     android:background="@drawable/circle_background_pink"
                     android:src="@drawable/ic_lightbulb_outline_black_24dp"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:contentDescription="@string/request_image_icon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -174,7 +176,8 @@
                     android:layout_height="64dp"
                     android:background="@drawable/circle_background_green"
                     android:src="@drawable/ic_control_point_black_24dp"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:contentDescription="@string/pay_bill_icon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -201,7 +204,8 @@
             android:layout_width="160dp"
             android:layout_height="190dp"
             android:layout_margin="10dp"
-            android:focusable="true">
+            android:focusable="true"
+            android:id="@+id/history">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -214,12 +218,13 @@
                     android:layout_height="64dp"
                     android:background="@drawable/circle_background_yellow"
                     android:padding="10dp"
-                    android:src="@drawable/ic_attach_file_black_24dp" />
+                    android:src="@drawable/ic_history"
+                    android:contentDescription="@string/transaction_history_icon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Links"
+                    android:text="@string/history"
                     android:textStyle="bold" />
                 <View
                     android:layout_width="match_parent"
@@ -231,8 +236,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Check your bank activities"
-                    android:textColor="@android:color/darker_gray" />
+                    android:text="@string/check_the_history_of_your_transactions"
+                    android:textColor="@android:color/background_dark" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
