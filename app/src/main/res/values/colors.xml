@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#3a0066</color>
+    <color name="colorPrimaryDark">#1d0033</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorBlue">#6495ED</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorGold">#FFD700</color>
 
     <color name="black_overlay">#66000000</color>
-    <color name="colorBlue">#33b5e5</color>
-    <color name="colorWhite">#ffffff</color>
     <color name="shadow_start_color">#87CEEB</color>
     <color name="btnGreen">#456E3F</color>
     <color name="money">#216C2A</color>
@@ -18,4 +19,5 @@
     <color name="darkblue">#23283a</color>
     <color name="testcolorblue">#152b38</color>
     <color name="pink">#fe104d</color>
+    <color name="colorBlack">#000000</color>
 </resources>

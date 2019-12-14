@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#0099cc"
+    android:background="@drawable/background"
     tools:context=".ui.splash.SplashActivity">
 
     <ImageView
@@ -17,8 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/launcher_Title"
         android:src="@mipmap/ic_launcher_round"
-
-        />
+        android:contentDescription="@string/logo" />
     <TextView
         android:id="@+id/launcher_Title"
         android:layout_width="match_parent"
@@ -26,32 +25,56 @@
         android:gravity="center"
         android:keepScreenOn="true"
         android:text="@string/app_name"
-        android:textColor="@color/colorBlue"
+        android:textColor="@color/colorGold"
         android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/launcher_Logo"/>
+    <ViewFlipper
+        android:id="@+id/Flipper"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/launcher_Title"
+        app:layout_constraintBottom_toTopOf="@+id/titles"/>
+    <ViewFlipper
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/titles"
+        app:layout_constraintTop_toBottomOf="@+id/Flipper"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/progressMessage"
+        />
+
 
     <TextView
         android:id="@+id/progressMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:textSize="18sp"
+        android:ems="18"
+        android:textColor="@color/colorGold"
         android:text="@string/loading"
+        android:layout_marginTop="100dp"
         android:layout_marginStart="@dimen/margin_md"
         android:layout_marginLeft="@dimen/margin_md"
         app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/launcher_Title"
+        app:layout_constraintTop_toBottomOf="@+id/titles"
         />
 
-    <ProgressBar
+    <com.beardedhen.androidbootstrap.BootstrapProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:animated="true"
+        app:bootstrapBrand="warning"
+        app:striped="true"
+        app:bootstrapProgress="99"
         android:layout_marginStart="@dimen/margin_md"
         android:layout_marginLeft="@dimen/margin_md"
         android:layout_marginEnd="@dimen/margin_md"
@@ -62,10 +85,13 @@
         app:layout_constraintTop_toBottomOf="@+id/progressMessage" />
 
     <TextView
+        android:ems="24"
+        android:textColor="@color/colorGold"
+        android:textSize="16sp"
         android:id="@+id/dev"
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:text="@string/dev"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
