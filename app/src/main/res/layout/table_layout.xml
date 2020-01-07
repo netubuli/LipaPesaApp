@@ -3,32 +3,46 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/id"
+        android:layout_weight="0.25"
+        android:gravity="center"
+        android:background="@drawable/table_border"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/code"
+        android:layout_weight="0.25"
+        android:gravity="center"
+        android:background="@drawable/table_border"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/tdate"
+        android:layout_weight="0.25"
+        android:gravity="center"
+        android:background="@drawable/table_border"/>
 
     <TextView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/Sender"
+        android:id="@+id/sender"
         android:layout_weight="0.25"
         android:gravity="center"
         android:background="@drawable/table_border"/>
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/Receiver"
+        android:id="@+id/amount"
         android:layout_weight="0.25"
         android:gravity="center"
         android:background="@drawable/table_border"/>
     <TextView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/Amount"
-        android:layout_weight="0.25"
-        android:gravity="center"
-        android:background="@drawable/table_border"/>
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:id="@+id/Type"
+        android:id="@+id/receiver"
         android:layout_weight="0.25"
         android:gravity="center"
         android:background="@drawable/table_border"/>
