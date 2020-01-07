@@ -19,7 +19,7 @@
         android:textSize="20sp"
         android:textColor="@color/colorWhite"/>
     <TableLayout
-        android:id="@+id/tableLayout"
+        android:id="@+id/transactionTableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
