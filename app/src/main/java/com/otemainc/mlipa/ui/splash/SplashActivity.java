@@ -74,7 +74,7 @@ public class SplashActivity extends Activity {
     private void doWork() {
         for (int progress = 0; progress < launcher_message.length; progress ++) {
             try {
-                Thread.sleep(5000);
+                Thread.sleep(2000);
                 //mProgress.setProgress(progress);
                 loaderLabel.setText(launcher_message[progress] + " " + (progress+1)*10 + " %");
             } catch (Exception e) {

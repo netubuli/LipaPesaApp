@@ -59,4 +59,10 @@
     <string name="slide2">The most convenient way to send and receive money</string>
     <string name="slide3">Send and receive money from anywhere anytime</string>
     <string name="slide4">Paga Pay</string>
+    <string name="receiver">RECEIVER</string>
+    <string name="Tamount">AMOUNT</string>
+    <string name="sender">SENDER</string>
+    <string name="transaction_date">TRANSACTION DATE</string>
+    <string name="transaction_id">TRANSACTION ID</string>
+    <string name="id">ID</string>
 </resources>
