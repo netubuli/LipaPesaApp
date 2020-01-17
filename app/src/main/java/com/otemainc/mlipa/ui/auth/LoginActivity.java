@@ -59,9 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
             // User is already logged in. Take him to main activity
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            loadMain();
         }
         login = findViewById(R.id.btnLogin);
         login.setOnClickListener(new View.OnClickListener() {
@@ -129,9 +127,7 @@ public class LoginActivity extends AppCompatActivity {
                         db.addUser(name, oname, email, phone, idno, uid, account, account_type, created_at);
                         Toast.makeText(getApplicationContext(),"Welcome " + name+" "+oname,Toast.LENGTH_LONG).show();
                         // Launch main activity
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        loadMain();
                     } else {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("error_msg");

@@ -24,7 +24,7 @@ public class TransactionHistoryAdapter extends TableLayout.Adapter<TransactionHi
     @Override
     public TransactionViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.transactionTableLayout, null);
+        View view = inflater.inflate(R.layout.table_layout, null);
         return new TransactionViewHolder(view);
     }
     @Override

@@ -84,7 +84,7 @@ public class GalleryFragment extends Fragment {
                                 JSONObject product = array.getJSONObject(i);
 
                                 //adding the product to product list
-                                transactionHistories.add(new TransactionHistory(
+                                transactionHistories.add(new TransactionHistoryAdapter(
                                         transactionHistories.getInt("id"),
                                         transactionHistories.getString("code"),
                                         transactionHistories.getString("tdate"),
