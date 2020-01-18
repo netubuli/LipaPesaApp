@@ -58,7 +58,7 @@ public class GalleryFragment extends Fragment {
         transactionView = root.findViewById(R.id.transactionTableLayout);
 
         //getting the progressbar
-        progressBar = root.findViewById(R.id.progressBar);
+        progressBar = root.findViewById(R.id.loadingProgress);
 
         transactionList = new ArrayList<>();
         db = new SQLiteHandler(getActivity().getApplicationContext());
@@ -92,12 +92,25 @@ public class GalleryFragment extends Fragment {
                             JSONObject obj = new JSONObject(response);
                             //we have the array named hero inside the object
                             //so here we are getting that json array
-                            JSONArray transactionArray = obj.getJSONArray("heroes");
+                            JSONArray transactionArray = obj.getJSONArray("t_history");
                             //now looping through all the elements of the json array
                             for (int i = 0; i < transactionArray.length(); i++) {
                                 //getting the json object of the particular index inside the array
                                 JSONObject transactionObject = transactionArray.getJSONObject(i);
-
+                                View tableRow = LayoutInflater.from(getActivity().getApplicationContext()).inflate(R.layout.table_layout, null, false);
+                                TextView t_id = tableRow.findViewById(R.id.t_id);
+                                TextView code = tableRow.findViewById(R.id.code);
+                                TextView t_date = tableRow.findViewById(R.id.tdate);
+                                TextView sender = tableRow.findViewById(R.id.sender);
+                                TextView amount = tableRow.findViewById(R.id.amount);
+                                TextView receiver = tableRow.findViewById(R.id.receiver);
+                                t_id.setText(String.valueOf(i+1));
+                                code.setText(transactionObject.getString("tid"));
+                                t_date.setText(transactionObject.getString("tdate"));
+                                sender.setText(transactionObject.getString("sender"));
+                                amount.setText(transactionObject.getString("amount"));
+                                receiver.setText(transactionObject.getString("receiver"));
+                                transactionView.addView(tableRow);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -120,4 +133,13 @@ public class GalleryFragment extends Fragment {
             };
         AppController.getInstance().addToRequestQueue(stringRequest, tag_string_req);
         }
+    /*private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }*/
 }

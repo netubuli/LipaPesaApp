@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/id"
+        android:id="@+id/t_id"
         android:layout_weight="0.25"
         android:gravity="center"
         android:background="@drawable/table_border"/>

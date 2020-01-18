@@ -30,9 +30,8 @@
             android:layout_height="match_parent"
             android:layout_weight="0.25"
             android:gravity="center"
-            android:text="@string/id"
+            android:text="@string/hash"
             android:textColor="@color/colorBlack"
-            android:textStyle="bold"
             android:background="@drawable/table_border"/>
         <TextView
             android:layout_width="0dp"
@@ -41,7 +40,6 @@
             android:gravity="center"
             android:text="@string/transaction_id"
             android:textColor="@color/colorBlack"
-            android:textStyle="bold"
             android:background="@drawable/table_border"/>
         <TextView
             android:layout_width="0dp"
@@ -50,7 +48,6 @@
             android:gravity="center"
             android:text="@string/transaction_date"
             android:textColor="@color/colorBlack"
-            android:textStyle="bold"
             android:background="@drawable/table_border"/>
         <TextView
             android:layout_width="0dp"
@@ -59,7 +56,6 @@
             android:gravity="center"
             android:text="@string/sender"
             android:textColor="@color/colorBlack"
-            android:textStyle="bold"
             android:background="@drawable/table_border"/>
             <TextView
                 android:layout_width="0dp"
@@ -68,7 +64,6 @@
                 android:gravity="center"
                 android:text="@string/Tamount"
                 android:textColor="@color/colorBlack"
-                android:textStyle="bold"
                 android:background="@drawable/table_border"/>
             <TextView
                 android:layout_width="0dp"
@@ -77,22 +72,18 @@
                 android:gravity="center"
                 android:text="@string/receiver"
                 android:textColor="@color/colorBlack"
-                android:textStyle="bold"
                 android:background="@drawable/table_border"/>
+
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </TableLayout>
+
+        <ProgressBar
+            android:id="@+id/loadingProgress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom" />
 
     </LinearLayout>
 </ScrollView>
