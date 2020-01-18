@@ -97,7 +97,7 @@ public class GalleryFragment extends Fragment {
                             for (int i = 0; i < transactionArray.length(); i++) {
                                 //getting the json object of the particular index inside the array
                                 JSONObject transactionObject = transactionArray.getJSONObject(i);
-                                
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
