@@ -8,16 +8,6 @@
     android:background="@drawable/background"
     tools:context=".ui.splash.SplashActivity">
 
-    <ImageView
-        android:id="@+id/launcher_Logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/launcher_Title"
-        android:src="@mipmap/ic_launcher_round"
-        android:contentDescription="@string/logo" />
     <TextView
         android:id="@+id/launcher_Title"
         android:layout_width="match_parent"
@@ -30,7 +20,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/launcher_Logo"/>
+        app:layout_constraintTop_toTopOf="parent"/>
     <ViewFlipper
         android:id="@+id/Flipper"
         android:layout_width="match_parent"
