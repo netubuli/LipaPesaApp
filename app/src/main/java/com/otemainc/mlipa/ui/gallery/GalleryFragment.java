@@ -1,11 +1,9 @@
 package com.otemainc.mlipa.ui.gallery;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -18,37 +16,26 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.otemainc.mlipa.R;
 import com.otemainc.mlipa.util.AppConfig;
 import com.otemainc.mlipa.util.AppController;
-import com.otemainc.mlipa.util.adapter.TransactionHistoryAdapter;
 import com.otemainc.mlipa.util.helper.SQLiteHandler;
-import com.otemainc.mlipa.util.model.TransactionHistory;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class GalleryFragment extends Fragment {
-
     private GalleryViewModel galleryViewModel;
-    //a list to store all the transaction histories
-   private List<TransactionHistory> transactionHistories;
-
     //the table layout
-    TableLayout transactionView;
-    List<TransactionHistory> transactionList;
-    ProgressBar progressBar;
+    private TableLayout transactionView;
+    private ProgressBar progressBar;
     private SQLiteHandler db;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,11 +43,8 @@ public class GalleryFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
         //getting the recyclerview from xml
         transactionView = root.findViewById(R.id.transactionTableLayout);
-
         //getting the progressbar
         progressBar = root.findViewById(R.id.loadingProgress);
-
-        transactionList = new ArrayList<>();
         db = new SQLiteHandler(getActivity().getApplicationContext());
         HashMap<String, String> account = db.getUserDetails();
         final String user = account.get("phone");
