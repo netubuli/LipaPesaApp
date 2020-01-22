@@ -66,4 +66,6 @@
     <string name="transaction_id">TRANSACTION ID</string>
     <string name="id">ID</string>
     <string name="hash">#</string>
+    <string name="agent_number">Agent Number</string>
+    <string name="withdraw">Withdraw</string>
 </resources>
