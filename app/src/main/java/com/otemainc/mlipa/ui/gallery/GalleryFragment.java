@@ -66,7 +66,7 @@ public class GalleryFragment extends Fragment {
         //making the progressbar visible
         progressBar.setVisibility(View.VISIBLE);
         //creating a string request to send request to the url
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_TRANSAC_DETAILS, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_TRANSACTION_DETAILS, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         //hiding the progressbar after completion
