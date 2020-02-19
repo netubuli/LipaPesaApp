@@ -68,4 +68,6 @@
     <string name="hash">#</string>
     <string name="agent_number">Agent Number</string>
     <string name="withdraw">Withdraw</string>
+    <string name="recover_password">Recover password</string>
+    <string name="reset_password">Reset Password</string>
 </resources>
