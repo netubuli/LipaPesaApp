@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.auth.LoginActivity"
-    android:background="@color/colorBlue">
+    android:background="@color/colorPrimaryDark">
     <TextView
         android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/sign_in"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorGold"
         android:textAlignment="center"
         android:textStyle="bold"
         android:textSize="@dimen/text_xl"
@@ -27,6 +27,8 @@
         android:layout_marginTop="144dp"
         android:hint="@string/email"
         android:backgroundTint="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textColor="@color/colorWhite"
         android:ems="14"
         android:drawableLeft="@drawable/ic_email"
         android:drawablePadding="@dimen/padding_sm"
@@ -43,6 +45,8 @@
         android:ems="14"
         android:hint="@string/password"
         android:backgroundTint="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textColor="@color/colorWhite"
         android:drawableLeft="@drawable/ic_lock_outline"
         android:drawablePadding="@dimen/padding_sm"
         android:inputType="textPassword"

@@ -2,7 +2,7 @@
 <ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/colorBlue">
+    android:background="@drawable/background">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/sign_up"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorGold"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_xl"
@@ -27,6 +27,8 @@
                 android:drawableLeft="@drawable/ic_perm_identity"
                 android:drawablePadding="@dimen/padding_sm"
                 android:backgroundTint="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:textColor="@color/colorWhite"
                 android:shadowRadius="10"
                 android:inputType="textEmailAddress"
                 android:layout_gravity="center"
@@ -42,11 +44,14 @@
                 android:drawableLeft="@drawable/ic_perm_identity"
                 android:drawablePadding="@dimen/padding_sm"
                 android:backgroundTint="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:textColor="@color/colorWhite"
                 android:shadowRadius="10"
                 android:inputType="textEmailAddress"
                 android:layout_gravity="center"
                 android:padding="@dimen/margin_md"
-                android:drawableStart="@drawable/ic_perm_identity" />
+                android:drawableStart="@drawable/ic_perm_identity"
+                android:layout_marginTop="20dp"/>
 
             <AutoCompleteTextView
                 android:id="@+id/txtRemail"
@@ -55,19 +60,24 @@
                 android:hint="@string/email"
                 android:ems="14"
                 android:backgroundTint="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:textColor="@color/colorWhite"
                 android:drawableLeft="@drawable/ic_email"
                 android:drawablePadding="@dimen/padding_sm"
                 android:shadowRadius="10"
                 android:inputType="textEmailAddress"
                 android:layout_gravity="center"
                 android:padding="@dimen/margin_md"
-                android:drawableStart="@drawable/ic_email" />
+                android:drawableStart="@drawable/ic_email"
+                android:layout_marginTop="20dp"/>
 
             <EditText
                 android:id="@+id/txtPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:textColor="@color/colorWhite"
                 android:ems="14"
                 android:inputType="phone"
                 android:hint="@string/phone_number"
@@ -76,12 +86,15 @@
                 android:layout_gravity="center"
                 android:padding="@dimen/margin_md"
                 android:drawableStart="@drawable/ic_contact_phone"
-                android:importantForAutofill="no" />
+                android:importantForAutofill="no"
+                android:layout_marginTop="20dp"/>
             <EditText
                 android:id="@+id/txtId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:textColor="@color/colorWhite"
                 android:ems="14"
                 android:inputType="text"
                 android:hint="@string/id_passport_number"
@@ -89,9 +102,9 @@
                 android:padding="@dimen/margin_md"
                 android:drawableLeft="@drawable/ic_contacts"
                 android:drawablePadding="@dimen/padding_sm"
-
                 android:importantForAutofill="no"
-                android:drawableStart="@drawable/ic_contacts" />
+                android:drawableStart="@drawable/ic_contacts"
+                android:layout_marginTop="20dp"/>
 
             <EditText
                 android:id="@+id/txtPassword"
@@ -99,6 +112,8 @@
                 android:layout_height="wrap_content"
                 android:ems="14"
                 android:backgroundTint="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:textColor="@color/colorWhite"
                 android:drawableLeft="@drawable/ic_lock_outline"
                 android:drawablePadding="@dimen/padding_sm"
                 android:hint="@string/password"
@@ -106,7 +121,8 @@
                 android:layout_gravity="center"
                 android:padding="@dimen/margin_md"
                 android:importantForAutofill="no"
-                android:drawableStart="@drawable/ic_lock_outline" />
+                android:drawableStart="@drawable/ic_lock_outline"
+                android:layout_marginTop="20dp"/>
 
             <EditText
                 android:id="@+id/txtCpass"
@@ -114,6 +130,8 @@
                 android:layout_height="wrap_content"
                 android:ems="14"
                 android:backgroundTint="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:textColor="@color/colorWhite"
                 android:drawableLeft="@drawable/ic_lock_outline"
                 android:drawablePadding="@dimen/padding_sm"
                 android:inputType="textPassword"
@@ -121,15 +139,53 @@
                 android:layout_gravity="center"
                 android:padding="@dimen/margin_md"
                 android:importantForAutofill="no"
-                android:drawableStart="@drawable/ic_lock_outline" />
-
+                android:drawableStart="@drawable/ic_lock_outline"
+                android:layout_marginTop="20dp"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="20dp">
             <CheckBox
                 android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/agree"
-                android:layout_gravity="center"
-                android:padding="@dimen/margin_md" />
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                android:layout_gravity="center" />
+    <TextView
+        android:id="@+id/privacy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/privacy_policy"
+        android:textColor="@color/colorWhite"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/and_the"
+        android:textColor="@color/colorWhite"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"/>
+    <TextView
+        android:id="@+id/terms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/terms_of_service"
+        android:textColor="@color/colorWhite"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"/>
+</LinearLayout>
                <Button
                 android:id="@+id/btnRRegister"
                 android:layout_width="wrap_content"
@@ -139,13 +195,17 @@
                 android:textColor="@color/colorWhite"
                 android:layout_gravity="center"
                 style="?android:attr/borderlessButtonStyle"
-                   android:enabled="false"/>
+                   android:enabled="false"
+                   android:layout_marginTop="20dp"/>
 
             <TextView
                 android:id="@+id/btnRLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/already_have_an_account_sign_in"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"/>
     </LinearLayout>
     </ScrollView>
