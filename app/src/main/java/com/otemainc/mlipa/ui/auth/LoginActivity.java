@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     private AutoCompleteTextView emailText;
     private EditText passwordText;
     private Button login;
-    private TextView register;
+    private TextView register, reset;
     private ProgressDialog pDialog;
     private SessionManager session;
     private SQLiteHandler db;
@@ -89,6 +89,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent loadReg = new Intent(LoginActivity.this,SignUpActivity.class);
                 startActivity(loadReg);
+                finish();
+            }
+        });
+        reset = findViewById(R.id.btnReset);
+        reset.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent loadReset = new Intent(LoginActivity.this,PasswordResetActivity.class);
+                startActivity(loadReset);
                 finish();
             }
         });
