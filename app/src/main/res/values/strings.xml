@@ -19,11 +19,11 @@
     <string name="menu_send">Send</string>
     <string name="dev">Powered by Otema Technologies</string>
     <string name="loading">Loading</string>
-    <string name="password">password</string>
+    <string name="password">Password / PIN </string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Register</string>
     <string name="email">Email</string>
-    <string name="confirm_password">Confirm Password</string>
+    <string name="confirm_password">Confirm Password / PIN</string>
     <string name="phone_number">Phone Number</string>
     <string name="other_name">Other Names</string>
     <string name="agree">I accept the privacy policy and terms of service</string>

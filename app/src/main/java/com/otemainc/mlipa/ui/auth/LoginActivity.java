@@ -70,13 +70,8 @@ public class LoginActivity extends AppCompatActivity {
                 login.setEnabled(false);
                 //create and show the progressDialog
                 if(validate(email,pass)){
-                    if (isValidPassword(pass)) {
                         passwordText.setError(null);
                         checkLogin(email, pass);
-                    }else{
-                        passwordText.setError("Password should contain at least one number, one lowercase letter, one uppercase letter, one special character and no space");
-                        login.setEnabled(true);
-                    }
                 }else{
                     login.setEnabled(true);
                     Toast.makeText(LoginActivity.this,"An error occured please check the submitted data and try again",Toast.LENGTH_LONG).show();
@@ -204,21 +199,12 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             emailText.setError(null);
         }
-        if (pass.isEmpty() || pass.length() < 6) {
-            passwordText.setError("Password should be at least 6 characters long");
+        if (pass.isEmpty() || pass.length() < 4) {
+            passwordText.setError("Password / PIN should be at least 4 characters long");
             valid = false;
         }else {
             passwordText.setError(null);
         }
         return valid;
-    }
-    //Check if password is valid
-    public boolean isValidPassword(final String password) {
-        Pattern pattern;
-        Matcher matcher;
-        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
-        pattern = Pattern.compile(PASSWORD_PATTERN);
-        matcher = pattern.matcher(password);
-        return matcher.matches();
     }
 }

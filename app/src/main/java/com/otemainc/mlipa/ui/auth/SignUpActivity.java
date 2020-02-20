@@ -99,19 +99,10 @@ public class SignUpActivity extends AppCompatActivity {
                 final String cPass = cPasswordText.getText().toString().trim();
                 //create and show the progressDialog
                 if(validate(lName,oName, email,phone,id,pass,cPass)){
-
-                    if (!isValidPassword(pass)) {
-                        passwordText.setError("Password should contain at least one number, one lowercase letter, one uppercase letter, one special character and no space");
-                        signUp.setEnabled(true);
-                    }else{
                         passwordText.setError(null);
                         signUp.setEnabled(false);
                         registerUser(lName,oName, email,phone,id,pass);
                     }
-                }else{
-                   signUp.setEnabled(true);
-                }
-
             }
         });
         agree = findViewById(R.id.checkBox);
@@ -244,8 +235,8 @@ public class SignUpActivity extends AppCompatActivity {
         }else{
             idText.setError(null);
         }
-        if (pass.isEmpty() || pass.length() < 6) {
-            passwordText.setError("Password should be at least 6 characters long");
+        if (pass.isEmpty() || pass.length() < 4) {
+            passwordText.setError("Password / PIN should be at least 4 characters long");
             valid = false;
         }else {
             passwordText.setError(null);
@@ -260,14 +251,5 @@ public class SignUpActivity extends AppCompatActivity {
             cPasswordText.setError(null);
         }
         return valid;
-    }
-    public boolean isValidPassword(final String password) {
-        Pattern pattern;
-        Matcher matcher;
-        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
-        pattern = Pattern.compile(PASSWORD_PATTERN);
-        matcher = pattern.matcher(password);
-        return matcher.matches();
-
     }
 }
