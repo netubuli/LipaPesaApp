@@ -2,16 +2,18 @@ package com.otemainc.mlipa.util;
 
 public class AppConfig {
     // Server user login url
-    public static String URL_LOGIN = "http://192.168.100.250:8082/mlipaapi/client/login.php";
+    public static String URL_LOGIN = "https://backend.pagapay.co.ke/client/login.php";
     // Server user register url
-    public static String URL_REGISTER = "http://192.168.100.250:8082/mlipaapi/client/register.php";
+    public static String URL_REGISTER = "https://backend.pagapay.co.ke/client/register.php";
+    // Server user register url
+    public static String URL_PASSWORDRESET = "https://backend.pagapay.co.ke/client/register.php";
     //Server send money url
-    public static String URL_SEND = "http://192.168.100.250:8082/mlipaapi/account/transfer.php";
+    public static String URL_SEND = "https://backend.pagapay.co.ke/account/transfer.php";
     //Server send money url
-    public static String URL_WITHDRAW = "http://192.168.100.250:8082/mlipaapi/account/withdraw.php";
+    public static String URL_WITHDRAW = "https://backend.pagapay.co.ke/account/withdraw.php";
     //balance url
-    public static String URL_BALANCE ="http://192.168.100.250:8082/mlipaapi/account/getbalance.php";
+    public static String URL_BALANCE ="https://backend.pagapay.co.ke/account/getbalance.php";
     //transaction details url
-    public static String URL_TRANSACTION_DETAILS ="http://192.168.100.250:8082/mlipaapi/account/get_transaction_history.php";
+    public static String URL_TRANSACTION_DETAILS ="https://backend.pagapay.co.ke/account/get_transaction_history.php";
 
 }

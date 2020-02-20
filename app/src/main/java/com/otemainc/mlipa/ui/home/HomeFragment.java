@@ -81,7 +81,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     if (!error) {
                         JSONObject transaction = jObj.getJSONObject("balance");
                         String amount = transaction.getString("amount");
-                        Toast.makeText(getActivity().getApplicationContext(), "Welcome", Toast.LENGTH_LONG).show();
                         //Display BALANCE
                         balance.setText("KSH " + amount);
                     } else {
