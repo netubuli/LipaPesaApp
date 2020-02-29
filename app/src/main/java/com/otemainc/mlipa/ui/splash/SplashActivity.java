@@ -87,13 +87,13 @@ public class SplashActivity extends Activity {
 //Check if the user has been authenticated
         session = new SessionManager(getApplicationContext());
         if (session.isLoggedIn()) {
-            //User is not yet logged in
-            // show the login activity
-            Intent login = new Intent(SplashActivity.this, MainActivity.class);
-            startActivity(login);
+            //User is logged in
+            // show the main activity
+            Intent main = new Intent(SplashActivity.this, MainActivity.class);
+            startActivity(main);
         }else {
-            //User has logged in
-            //Show the HomeActivity
+            //User has not logged in
+            //Show the LoginActivity
             Intent home = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(home);
         }
